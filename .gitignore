@@ -362,3 +362,13 @@ Users-Demo.Validations/Users-Demo.Validations.csproj
 /Users-Demo.Services/obj/project.assets.json
 /Users-Demo.Services/obj/project.nuget.cache
 /.vs/Users-Demo/DesignTimeBuild/.dtbcache.v2
+*.pdb
+*.dll
+*.cache
+*.cache
+*.txt
+*.json
+*.dll
+*.pdb
+*.cache
+*.txt

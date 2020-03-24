@@ -82,11 +82,5 @@ namespace Users_Demo.Tests.Service.User
             _repo.Setup(x => x.GetByIdAsync(It.IsAny<int>()))
                 .Returns(Task.FromResult(FakeUsersData.GetSampleUser(hasData)));
         }
-
-        private void DeleteUserSetup(bool hasData)
-        {
-            _repo.Setup(x => x.GetByIdAsync(It.IsAny<int>()))
-                .Returns(Task.FromResult(FakeUsersData.GetSampleUser(hasData)));
-        }
     }
 }
