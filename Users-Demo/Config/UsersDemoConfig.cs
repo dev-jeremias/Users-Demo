@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Users_Demo.Common.Requests.CommonRequest;
 using Users_Demo.Common.Requests.University;
@@ -7,6 +8,7 @@ using Users_Demo.Common.Requests.Users;
 using Users_Demo.DAL;
 using Users_Demo.DAL.Models;
 using Users_Demo.Filter;
+using Users_Demo.Handler.University.Handler;
 using Users_Demo.Repository.Implementation;
 using Users_Demo.Repository.Interface;
 using Users_Demo.Services.Implementation;
@@ -21,9 +23,10 @@ namespace Users_Demo.Config
     {
         internal static void AddServices(this IServiceCollection services)
         {
+            services.AddTransient<DbContext, UsersDemoContext>();
+            services.AddTransient<IRepository<UsersDemoContext>, Repository<UsersDemoContext>>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IUniversityService, UniversityService>();
-            services.AddTransient<IRepository, Repository<UsersDemoContext>>();
         }
 
         internal static void AddValidator(this IServiceCollection services)
@@ -42,7 +45,6 @@ namespace Users_Demo.Config
 
             services.AddTransient<IValidator<UniversityByName>, UniversityByNameValidator>();
             services.AddTransient<IValidator<University>, UniversityModelValidator>();
-
         }
     }
 }
