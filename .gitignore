@@ -313,3 +313,15 @@ Users-Demo.Validations/obj/Users-Demo.Validations.csproj.nuget.g.props
 Users-Demo.Validations/obj/Users-Demo.Validations.csproj.nuget.g.targets
 Users-Demo.Validations/Users-Demo.Validations.csproj
 Users-Demo/obj/Debug/netcoreapp3.1/Users-Demo.csprojAssemblyReference.cache
+*.cache
+*.cache
+*.json
+Users-Demo/obj/Debug/netcoreapp3.1/Users-Demo.assets.cache
+Users-Demo/obj/Debug/netcoreapp3.1/Users-Demo.csprojAssemblyReference.cache
+Users-Demo/obj/project.assets.json
+Users-Demo/obj/project.nuget.cache
+*.v2
+*.v2
+*.cache
+*.cache
+*.json
