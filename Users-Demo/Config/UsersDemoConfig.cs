@@ -8,7 +8,6 @@ using Users_Demo.Common.Requests.Users;
 using Users_Demo.DAL;
 using Users_Demo.DAL.Models;
 using Users_Demo.Filter;
-using Users_Demo.Handler.University.Handler;
 using Users_Demo.Repository.Implementation;
 using Users_Demo.Repository.Interface;
 using Users_Demo.Services.Implementation;
