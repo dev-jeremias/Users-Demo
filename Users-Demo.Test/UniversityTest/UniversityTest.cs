@@ -2,6 +2,7 @@
 using System;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Users_Demo.DAL;
 using Users_Demo.DAL.Models;
 using Users_Demo.Repository.Interface;
 using Users_Demo.Services.Implementation;
@@ -17,9 +18,14 @@ namespace Users_Demo.Test.UniversityTest
 
         public UniversityTest()
         {
-            var context1 = new Mock<DbContext>();
+            var usersDemoContext = new DbContextOptions<UsersDemoContext>();
+            var context = new DbContext(usersDemoContext);
             _repo = new Mock<IRepository<University>>();
-            _service = new UniversityService(context1.Object);
+            _service = new UniversityService(context);
+
+            //_repo = new Mock<IRepository<University>>();
+            //var context = new Mock<DbContext>();
+            //_service = new UniversityService(context.Object);
         }
 
         [Fact]
@@ -44,7 +50,7 @@ namespace Users_Demo.Test.UniversityTest
         }
 
         [Fact]
-        public void GettData_Empty_Response()
+        public void GetData_Empty_Response()
         {
             GetUsersSetUp(false);
 
@@ -102,6 +108,8 @@ namespace Users_Demo.Test.UniversityTest
 
             var univ = await _service.DeleteAsync(id);
 
+            var university = await _repo.Object.DeleteAsync(id);
+
             Assert.True(univ);
         }
 
@@ -116,8 +124,6 @@ namespace Users_Demo.Test.UniversityTest
             var university = await _service.UpdateAsync(universityData);
 
             Assert.True(university);
-
-            
         }
 
         private void GetUsersSetUp(bool hasData)

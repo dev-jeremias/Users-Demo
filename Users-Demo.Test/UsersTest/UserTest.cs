@@ -12,8 +12,8 @@ namespace Users_Demo.Test.UsersTest
 {
     public class UserTest
     {
-        private Mock<IRepository<Users>> _repo;
-        private IUserService _service;
+        private readonly Mock<IRepository<Users>> _repo;
+        private readonly IUserService _service;
 
         public UserTest()
         {
