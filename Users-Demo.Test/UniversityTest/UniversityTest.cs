@@ -33,7 +33,7 @@ namespace Users_Demo.Test.UniversityTest
         }
 
         [Fact]
-        public void GetUsers_With_Response()
+        public void GetData_With_Response()
         {
             GetUsersSetUp(true);
 
@@ -43,7 +43,7 @@ namespace Users_Demo.Test.UniversityTest
         }
 
         [Fact]
-        public void GetUsers_Empty_Response()
+        public void GettData_Empty_Response()
         {
             GetUsersSetUp(false);
 
@@ -65,12 +65,13 @@ namespace Users_Demo.Test.UniversityTest
         public void When_IdIsDigitAndNotZeroOrLess_Expect_EqualId()
         {
             int id = 3;
-            GetTimeLogByIdSetUp(true);
+            GetUniversityByIdSetUp(true);
 
             var university = _repo.Object.GetByIdAsync(id);
             var actual = university.Result;
+            var expected = FakeUniversity.GetSampleUniversity(true);
 
-            Assert.Equal(3, actual.Id);
+            Assert.Equal(expected.Id, actual.Id);
         }
 
         [Fact]
@@ -109,7 +110,7 @@ namespace Users_Demo.Test.UniversityTest
                 .Returns(FakeUniversity.GetSampleUniversities(hasData));
         }
 
-        private void GetTimeLogByIdSetUp(bool hasData)
+        private void GetUniversityByIdSetUp(bool hasData)
         {
             _repo.Setup(x => x.GetByIdAsync(It.IsAny<int>()))
                 .Returns(Task.FromResult(FakeUniversity.GetSampleUniversity(hasData)));
