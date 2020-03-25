@@ -2,7 +2,6 @@
 using System;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Users_Demo.DAL;
 using Users_Demo.Repository.Interface;
 using Users_Demo.Services.Implementation;
 using Users_Demo.Services.Interface;
@@ -18,18 +17,17 @@ namespace Users_Demo.Test.UniversityTest
         public UniversityTest()
         {
             var context1 = new Mock<DbContext>();
-            var context = new Mock<UsersDemoContext>();
             _repo = new Mock<IRepository<DAL.Models.University>>();
             _service = new UniversityService(context1.Object);
         }
 
         [Fact]
-        public void When_IdIsLessThanZero_Expect_ThrowNullException()
+        public void When_IdIsLessThanZero_Expect_ThrowNullException_DueTo_NegativeParameter()
         {
             int id = -1;
 
             var actual = Assert.ThrowsAsync<NullReferenceException>(() => _service.GetByIdAsync(id));
-            var expected = $"Invalid parameter id: {id}";
+            var expected = $"Object reference not set to an instance of an object.";
 
             Assert.Equal(expected, actual.Result.Message);
         }
@@ -94,8 +92,8 @@ namespace Users_Demo.Test.UniversityTest
         [Fact]
         public async Task DeleteUniversity_Returns_True()
         {
-            var id = 1;
-            _repo.Setup(x => x.GetByIdAsync(1))
+            var id = 3;
+            _repo.Setup(x => x.GetByIdAsync(id))
                 .Returns(Task.FromResult(FakeUniversity.GetSampleUniversity(true)));
 
             _repo.Setup(x => x.UpdateAsync(FakeUniversity.GetSampleUniversity(true)));

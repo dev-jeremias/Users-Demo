@@ -1,7 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Moq;
 using Users_Demo.DAL.Models;
 using Users_Demo.Repository.Interface;
+using Users_Demo.Services.Implementation;
+using Users_Demo.Services.Interface;
 using Xunit;
 
 namespace Users_Demo.Test.UsersTest
@@ -9,10 +13,24 @@ namespace Users_Demo.Test.UsersTest
     public class UserTest
     {
         private Mock<IRepository<Users>> _repo;
+        private IUserService _service;
 
         public UserTest()
         {
             _repo = new Mock<IRepository<Users>>();
+            var context1 = new Mock<DbContext>();
+            _service = new UserService(context1.Object);
+        }
+
+        [Fact]
+        public void When_IdIsLessThanZero_Expect_ThrowNullException_DueTo_NegativeParameter()
+        {
+            int id = -1;
+
+            var actual = Assert.ThrowsAsync<NullReferenceException>(() => _service.GetByIdAsync(id));
+            var expected = $"Object reference not set to an instance of an object.";
+
+            Assert.Equal(expected, actual.Result.Message);
         }
 
         [Fact]

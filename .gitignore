@@ -217,8 +217,6 @@ healthchecksdb
 >>>>>>> eb39d40eefd36dc9cdc177c021bf74fafc178e46
 .vs/Users-Demo/DesignTimeBuild/.dtbcache.v2
 *.v2
-.vs/Users-Demo/v16/.suo
-Users-Demo.Common/Users-Demo.Common.csproj
 *.dll
 *.cache
 */**/bin/Debug
