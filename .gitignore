@@ -221,6 +221,10 @@ healthchecksdb
 Users-Demo.Common/Users-Demo.Common.csproj
 *.dll
 *.cache
+*/**/bin/Debug
+*/**/bin/Release
+*/**/obj/Debug
+*/**/obj/Release
 Users-Demo.DAL/obj/Debug/netstandard2.0/Users-Demo.DAL.csprojAssemblyReference.cache
 Users-Demo.Handler/bin/Debug/netstandard2.0/Users-Demo.Handler.dll
 Users-Demo.Handler/bin/Debug/netstandard2.0/Users-Demo.Handler.pdb
