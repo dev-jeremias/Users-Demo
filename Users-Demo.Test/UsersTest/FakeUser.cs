@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Users_Demo.DAL.Models;
 
-namespace Users_Demo.Tests.Service.User
+namespace Users_Demo.Test.UsersTest
 {
-    public class FakeUsersData
+    public class FakeUser
     {
         public static IQueryable<Users> GetSampleUsers(bool hasData)
         {

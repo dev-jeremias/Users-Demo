@@ -1,20 +1,21 @@
 ﻿using System.Threading.Tasks;
 using Moq;
-using NUnit.Framework;
 using Users_Demo.DAL.Models;
 using Users_Demo.Repository.Interface;
+using Xunit;
 
-namespace Users_Demo.Tests.Service.User
+namespace Users_Demo.Test.UsersTest
 {
-    public class UserServiceTests
+    public class UserTest
     {
-        private readonly Mock<IRepository<Users>> _repo;
-        public UserServiceTests()
+        private Mock<IRepository<Users>> _repo;
+
+        public UserTest()
         {
             _repo = new Mock<IRepository<Users>>();
         }
 
-        [Test]
+        [Fact]
         public void GetUsers_With_Response()
         {
             GetUsersSetUp(true);
@@ -24,7 +25,7 @@ namespace Users_Demo.Tests.Service.User
             Assert.NotNull(users);
         }
 
-        [Test]
+        [Fact]
         public void GetUsers_Empty_Response()
         {
             GetUsersSetUp(false);
@@ -34,32 +35,32 @@ namespace Users_Demo.Tests.Service.User
             Assert.NotNull(users);
         }
 
-        [Test]
+        [Fact]
         public void When_Create_Expect_MethodCalled()
         {
-            var user = FakeUsersData.GetSampleUser(true);
+            var user = FakeUser.GetSampleUser(true);
 
             _repo.Object.CreateAsync(user);
             _repo.Verify(x => x.CreateAsync(user), Times.Once);
         }
 
-        [Test]
+        [Fact]
         public async Task CreateUser_Returns_False()
         {
-            var userData = FakeUsersData.GetSampleUser(true);
+            var userData = FakeUser.GetSampleUser(true);
             var userResponse = await _repo.Object.CreateAsync(userData);
-            Assert.IsFalse(userResponse);
+            Assert.False(userResponse);
         }
 
-        [Test]
+        [Fact]
         public async Task UpdateUser_Returns_False()
         {
-            var userData = FakeUsersData.GetSampleUser(true);
+            var userData = FakeUser.GetSampleUser(true);
             var userResponse = await _repo.Object.UpdateAsync(userData);
-            Assert.IsFalse(userResponse);
+            Assert.False(userResponse);
         }
 
-        [Test]
+        [Fact]
         public void When_IdIsDigitAndNotZeroOrLess_Expect_EqualId()
         {
             int id = 3;
@@ -68,19 +69,19 @@ namespace Users_Demo.Tests.Service.User
             var user = _repo.Object.GetByIdAsync(id);
             var actual = user.Result;
 
-            Assert.AreEqual(3, actual.Id);
+            Assert.Equal(3, actual.Id);
         }
 
         private void GetUsersSetUp(bool hasData)
         {
             _repo.Setup(x => x.Get())
-                .Returns(FakeUsersData.GetSampleUsers(hasData));
+                .Returns(FakeUser.GetSampleUsers(hasData));
         }
 
         private void GetTimeLogByIdSetUp(bool hasData)
         {
             _repo.Setup(x => x.GetByIdAsync(It.IsAny<int>()))
-                .Returns(Task.FromResult(FakeUsersData.GetSampleUser(hasData)));
+                .Returns(Task.FromResult(FakeUser.GetSampleUser(hasData)));
         }
     }
 }

@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Users-Demo.Validator", "Use
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Users-Demo.Common", "Users-Demo.Common\Users-Demo.Common.csproj", "{A0F6B912-BA10-4F44-AECC-C8E4823A94F7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Users-Demo.Tests", "Users-Demo.Tests\Users-Demo.Tests.csproj", "{F95DE62A-7F17-4D3F-A52D-9B81D0659604}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Users-Demo.Test", "Users-Demo.Test\Users-Demo.Test.csproj", "{029F2BD1-700E-4DB2-BB5C-147A258613D2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,10 +53,10 @@ Global
 		{A0F6B912-BA10-4F44-AECC-C8E4823A94F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0F6B912-BA10-4F44-AECC-C8E4823A94F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0F6B912-BA10-4F44-AECC-C8E4823A94F7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F95DE62A-7F17-4D3F-A52D-9B81D0659604}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F95DE62A-7F17-4D3F-A52D-9B81D0659604}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F95DE62A-7F17-4D3F-A52D-9B81D0659604}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F95DE62A-7F17-4D3F-A52D-9B81D0659604}.Release|Any CPU.Build.0 = Release|Any CPU
+		{029F2BD1-700E-4DB2-BB5C-147A258613D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{029F2BD1-700E-4DB2-BB5C-147A258613D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{029F2BD1-700E-4DB2-BB5C-147A258613D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{029F2BD1-700E-4DB2-BB5C-147A258613D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

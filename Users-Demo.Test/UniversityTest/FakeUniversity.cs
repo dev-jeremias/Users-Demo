@@ -1,25 +1,26 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Users_Demo.DAL.Models;
 
-namespace Users_Demo.Tests.Service.University
+namespace Users_Demo.Test.UniversityTest
 {
-    public class FakeUniversityData
+    public class FakeUniversity
     {
-        public static IQueryable<DAL.Models.University> GetSampleUniversities(bool hasData)
+        public static IQueryable<University> GetSampleUniversities(bool hasData)
         {
             if (hasData == false)
-                return new List<DAL.Models.University>().AsQueryable();
+                return new List<University>().AsQueryable();
 
-            return new List<DAL.Models.University>
+            return new List<University>
             {
-                new DAL.Models.University
+                new University
                 {
                     Id = 1,
                     Name = "Testing1",
                     IsActive = true,
                     IsDeleted = false
                 },
-                new DAL.Models.University
+                new University
                 {
                     Id = 2,
                     Name = "Testing2",
@@ -29,12 +30,12 @@ namespace Users_Demo.Tests.Service.University
             }.AsQueryable();
         }
 
-        public static DAL.Models.University GetSampleUniversity(bool hasData)
+        public static University GetSampleUniversity(bool hasData)
         {
             if (hasData == false)
-                return new DAL.Models.University();
+                return new University();
 
-            return new DAL.Models.University
+            return new University
             {
                 Id = 3,
                 Name = "Testing3",
