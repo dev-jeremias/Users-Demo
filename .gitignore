@@ -259,7 +259,6 @@ Users-Demo/obj/Users-Demo.csproj.nuget.dgspec.json
 Users-Demo/obj/project.nuget.cache
 *.json
 *.txt
-*.csproj
 *.targets
 *.props
 .vs/Users-Demo/config/applicationhost.config
