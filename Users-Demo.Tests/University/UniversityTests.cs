@@ -30,7 +30,7 @@ namespace Users_Demo.Tests.University
 
         [Theory]
         [InlineData("api/universities")] //wrong route
-        public async Task Get_UniversityById_Return_Success(string url)
+        public async Task Get_University_Return_NotFound(string url)
         {
             var client = _factory.CreateClient();
 
@@ -40,6 +40,34 @@ namespace Users_Demo.Tests.University
 
             Assert.Equal("Not Found", response.ReasonPhrase);
             Assert.Equal(HttpStatusCode.NotFound, statusCode);
+        }
+
+        [Theory]
+        [InlineData("api/university/GetById?Id=1")]
+        public async Task Get_UniversityById_Return_Success(string url)
+        {
+            var client = _factory.CreateClient();
+
+            var response = await client.GetAsync(url);
+
+            var code = response.EnsureSuccessStatusCode();
+
+            Assert.Equal("OK", response.ReasonPhrase);
+            Assert.True(code.IsSuccessStatusCode);
+        }
+
+        [Theory]
+        [InlineData("api/university/GetById?Id=100")]
+        public async Task Get_UniversityById_Return_NoContent(string url)
+        {
+            var client = _factory.CreateClient();
+
+            var response = await client.GetAsync(url);
+
+            var statusCode = response.StatusCode;
+
+            Assert.Equal("No Content", response.ReasonPhrase);
+            Assert.Equal(HttpStatusCode.NoContent, statusCode);
         }
     }
 }
