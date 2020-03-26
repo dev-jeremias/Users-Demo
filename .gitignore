@@ -259,7 +259,6 @@ Users-Demo/obj/Debug/netcoreapp3.1/Users-Demo.pdb
 Users-Demo/obj/project.assets.json
 Users-Demo/obj/Users-Demo.csproj.nuget.dgspec.json
 Users-Demo/obj/project.nuget.cache
-*.json
 *.txt
 *.targets
 *.props
