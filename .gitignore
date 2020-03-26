@@ -288,7 +288,6 @@ Users-Demo.Validations/obj/Users-Demo.Validations.csproj.nuget.g.props
 Users-Demo.Validations/obj/Users-Demo.Validations.csproj.nuget.g.targets
 Users-Demo.Validations/Users-Demo.Validations.csproj
 /.vs/Users-Demo/v16/.suo
-/Users-Demo/Config/UsersDemoConfig.cs
 /Users-Demo/obj/Debug/netcoreapp3.1/Users-Demo.assets.cache
 /Users-Demo/obj/Debug/netcoreapp3.1/Users-Demo.csproj.FileListAbsolute.txt
 /Users-Demo/obj/Debug/netcoreapp3.1/Users-Demo.csprojAssemblyReference.cache
@@ -328,7 +327,6 @@ Users-Demo.Validations/Users-Demo.Validations.csproj
 /Users-Demo.Handler/obj/Users-Demo.Handler.csproj.nuget.g.props
 /Users-Demo.Handler/obj/project.assets.json
 /Users-Demo.Handler/obj/project.nuget.cache
-/Users-Demo.Repository/Implementation/Repository.cs
 /Users-Demo.Repository/bin/Debug/netstandard2.0/Users-Demo.DAL.dll
 /Users-Demo.Repository/bin/Debug/netstandard2.0/Users-Demo.DAL.pdb
 /Users-Demo.Repository/bin/Debug/netstandard2.0/Users-Demo.Repository.deps.json
@@ -344,7 +342,6 @@ Users-Demo.Validations/Users-Demo.Validations.csproj
 /Users-Demo.Repository/obj/Users-Demo.Repository.csproj.nuget.g.props
 /Users-Demo.Repository/obj/project.assets.json
 /Users-Demo.Repository/obj/project.nuget.cache
-/Users-Demo.Services/Implementation/UniversityService.cs
 /Users-Demo.Services/bin/Debug/netstandard2.0/Users-Demo.DAL.dll
 /Users-Demo.Services/bin/Debug/netstandard2.0/Users-Demo.DAL.pdb
 /Users-Demo.Services/bin/Debug/netstandard2.0/Users-Demo.Repository.dll
