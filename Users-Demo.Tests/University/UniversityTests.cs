@@ -143,6 +143,28 @@ namespace Users_Demo.Tests.University
         }
 
         [Fact]
+        public async Task Post_University_Returns_BadRequest()
+        {
+            var client = _webFactory.CreateClient();
+            var request = new
+            {
+                Url = "api/university",
+                Body = new
+                {
+                    id = -1,
+                    name = "test",
+                    isActive = true,
+                    isDeleted = true
+                }
+            };
+            var bodyContent = new StringContent(JsonConvert.SerializeObject(request.Body), Encoding.UTF8, "application/json");
+            var response = await client.PostAsync(request.Url, bodyContent);
+
+            Assert.Equal("Bad Request", response.ReasonPhrase);
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+        }
+
+        [Fact]
         public async Task Update_University_Returns_Ok()
         {
             var client = _factory.CreateClient();
