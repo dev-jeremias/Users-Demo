@@ -85,5 +85,19 @@ namespace Users_Demo.Tests.User
             Assert.Equal("No Content", response.ReasonPhrase);
             Assert.Equal(HttpStatusCode.NoContent, statusCode);
         }
+
+        [Theory]
+        [InlineData("api/users?id=5")]
+        public async Task Delete_Users_Returns_OK(string url)
+        {
+            var client = _factory.CreateClient();
+
+            var response = await client.DeleteAsync(url);
+
+            var statusCode = response.StatusCode;
+
+            Assert.Equal("OK", response.ReasonPhrase);
+            Assert.Equal(HttpStatusCode.OK, statusCode);
+        }
     }
 }

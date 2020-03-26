@@ -76,7 +76,7 @@ namespace Users_Demo.Controllers
         }
 
         [HttpDelete]
-        public async Task<ActionResult<Users>> Delete(RequestById req)
+        public async Task<ActionResult<Users>> Delete([FromQuery]RequestById req)
         {
             var delUser = await _mediator.Send(new DeleteUserQuery(req.Id));
             if (delUser)

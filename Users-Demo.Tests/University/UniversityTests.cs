@@ -86,5 +86,19 @@ namespace Users_Demo.Tests.University
             Assert.Equal("No Content", response.ReasonPhrase);
             Assert.Equal(HttpStatusCode.NoContent, statusCode);
         }
+
+        [Theory]
+        [InlineData("api/university?id=1")]
+        public async Task Delete_University_Returns_OK(string url)
+        {
+            var client = _factory.CreateClient();
+
+            var response = await client.DeleteAsync(url);
+
+            var statusCode = response.StatusCode;
+
+            Assert.Equal("OK", response.ReasonPhrase);
+            Assert.Equal(HttpStatusCode.OK, statusCode);
+        }
     }
 }

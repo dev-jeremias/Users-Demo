@@ -28,7 +28,7 @@ namespace Users_Demo.Tests
             {
                 new Users(){ FirstName = "TestF1", LastName = "TestL1", IsDeleted = false, DateOfBirth = DateTime.UtcNow, IsActive = true },
                 new Users(){ FirstName = "TestF2", LastName = "TestL2", IsDeleted = false, DateOfBirth = DateTime.UtcNow, IsActive = true },
-                new Users(){ FirstName = "TestF3", LastName = "TestL2", IsDeleted = false, DateOfBirth = DateTime.UtcNow, IsActive = true },
+                new Users(){ Id = 5, FirstName = "TestF3", LastName = "TestL2", IsDeleted = false, DateOfBirth = DateTime.UtcNow, IsActive = true },
             };
         }
 
