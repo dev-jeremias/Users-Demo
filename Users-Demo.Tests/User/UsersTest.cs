@@ -87,6 +87,63 @@ namespace Users_Demo.Tests.User
         }
 
         [Theory]
+        [InlineData("api/users/GetByFirstName?FirstName=TestF1")]
+        public async Task Get_UsersByFirstName_Return_Ok(string url)
+        {
+            var client = _factory.CreateClient();
+
+            var response = await client.GetAsync(url);
+
+            var statusCode = response.StatusCode;
+
+            Assert.Equal("OK", response.ReasonPhrase);
+            Assert.Equal(HttpStatusCode.OK, statusCode);
+        }
+
+        [Theory]
+        [InlineData("api/users/GetByLastName?LastName=TestLastName")]
+        public async Task Get_UsersByLastName_Return_NoContent(string url)
+        {
+            var client = _webFactory.CreateClient();
+
+            var response = await client.GetAsync(url);
+
+            var statusCode = response.StatusCode;
+
+            Assert.Equal("No Content", response.ReasonPhrase);
+            Assert.Equal(HttpStatusCode.NoContent, statusCode);
+        }
+
+        [Theory]
+        [InlineData("api/users/GetByLastName?LastName=TestL2")]
+        public async Task Get_UsersByLastName_Return_Ok(string url)
+        {
+            var client = _factory.CreateClient();
+
+            var response = await client.GetAsync(url);
+
+            var statusCode = response.StatusCode;
+
+            Assert.Equal("OK", response.ReasonPhrase);
+            Assert.Equal(HttpStatusCode.OK, statusCode);
+        }
+
+        [Theory]
+        [InlineData("api/users/GetByFirstName?FirstName=TestFirstName")]
+        public async Task Get_UsersByFirstName_Return_NoContent(string url)
+        {
+            var client = _webFactory.CreateClient();
+
+            var response = await client.GetAsync(url);
+
+            var statusCode = response.StatusCode;
+
+            Assert.Equal("No Content", response.ReasonPhrase);
+            Assert.Equal(HttpStatusCode.NoContent, statusCode);
+        }
+
+
+        [Theory]
         [InlineData("api/users?id=5")]
         public async Task Delete_Users_Returns_OK(string url)
         {
@@ -98,6 +155,20 @@ namespace Users_Demo.Tests.User
 
             Assert.Equal("OK", response.ReasonPhrase);
             Assert.Equal(HttpStatusCode.OK, statusCode);
+        }
+
+        [Theory]
+        [InlineData("api/users?id=500")]
+        public async Task Delete_Users_Returns_BadRequest(string url)
+        {
+            var client = _factory.CreateClient();
+
+            var response = await client.DeleteAsync(url);
+
+            var statusCode = response.StatusCode;
+
+            Assert.Equal("Internal Server Error", response.ReasonPhrase);
+            Assert.Equal(HttpStatusCode.InternalServerError, statusCode);
         }
     }
 }

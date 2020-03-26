@@ -43,7 +43,7 @@ namespace Users_Demo.Controllers
         public async Task<IActionResult> GetByFirstName([FromQuery]UsersByFirstName req)
         {
             var users = await _mediator.Send(new GetUsersByNameQuery(req.FirstName));
-            if (users != null)
+            if (users.Any())
                 return Ok(users);
             return NoContent();
         }
@@ -52,7 +52,7 @@ namespace Users_Demo.Controllers
         public async Task<IActionResult> GetByLastName([FromQuery]UsersByLastName req)
         {
             var users = await _mediator.Send(new GetUsersByNameQuery(lastName: req.LastName));
-            if (users != null)
+            if (users.Any())
                 return Ok(users);
             return NoContent();
         }
