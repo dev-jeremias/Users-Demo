@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Testing;
 using Xunit;
 
 namespace Users_Demo.Tests.User
@@ -7,10 +8,26 @@ namespace Users_Demo.Tests.User
     public class UsersTest : IClassFixture<TestingFactory<Startup>>
     {
         private readonly TestingFactory<Startup> _factory;
+        private readonly WebApplicationFactory<Startup> _webFactory;
 
         public UsersTest(TestingFactory<Startup> factory)
         {
             _factory = factory;
+            _webFactory = new WebApplicationFactory<Startup>();
+        }
+
+        [Theory]
+        [InlineData("api/users")]
+        public async Task Get_Users_Return_NoContent(string url)
+        {
+            var client = _webFactory.CreateClient();
+
+            var response = await client.GetAsync(url);
+
+            var statusCode = response.StatusCode;
+
+            Assert.Equal("No Content", response.ReasonPhrase);
+            Assert.Equal(HttpStatusCode.NoContent, statusCode);
         }
 
         [Theory]
