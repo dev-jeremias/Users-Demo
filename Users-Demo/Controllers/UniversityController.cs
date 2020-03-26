@@ -43,7 +43,7 @@ namespace Users_Demo.Controllers
         public async Task<IActionResult> GetByName([FromQuery]UniversityByName req)
         {
             var university = await _mediator.Send(new GetUniversityByNameQuery(req.Name));
-            if (university != null)
+            if (university.Any())
                 return Ok(university);
             return NoContent();
         }

@@ -88,6 +88,34 @@ namespace Users_Demo.Tests.University
         }
 
         [Theory]
+        [InlineData("api/university/GetUniversityByName?Name=TestingOnly")]
+        public async Task Get_UniversityByName_Return_NoContent(string url)
+        {
+            var client = _webFactory.CreateClient();
+
+            var response = await client.GetAsync(url);
+
+            var statusCode = response.StatusCode;
+
+            Assert.Equal("No Content", response.ReasonPhrase);
+            Assert.Equal(HttpStatusCode.NoContent, statusCode);
+        }
+
+        [Theory]
+        [InlineData("api/university/GetUniversityByName?Name=Test1")]
+        public async Task Get_UniversityByName_Return_Ok(string url)
+        {
+            var client = _factory.CreateClient();
+
+            var response = await client.GetAsync(url);
+
+            var statusCode = response.StatusCode;
+
+            Assert.Equal("OK", response.ReasonPhrase);
+            Assert.Equal(HttpStatusCode.OK, statusCode);
+        }
+
+        [Theory]
         [InlineData("api/university?id=1")]
         public async Task Delete_University_Returns_OK(string url)
         {
@@ -99,6 +127,20 @@ namespace Users_Demo.Tests.University
 
             Assert.Equal("OK", response.ReasonPhrase);
             Assert.Equal(HttpStatusCode.OK, statusCode);
+        }
+
+        [Theory]
+        [InlineData("api/university?id=500")]
+        public async Task Delete_University_Returns_BadRequest(string url)
+        {
+            var client = _factory.CreateClient();
+
+            var response = await client.DeleteAsync(url);
+
+            var statusCode = response.StatusCode;
+
+            Assert.Equal("Internal Server Error", response.ReasonPhrase);
+            Assert.Equal(HttpStatusCode.InternalServerError, statusCode);
         }
     }
 }
