@@ -1,6 +1,10 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
+using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Newtonsoft.Json;
 using Xunit;
 
 namespace Users_Demo.Tests.User
@@ -14,6 +18,56 @@ namespace Users_Demo.Tests.User
         {
             _factory = factory;
             _webFactory = new WebApplicationFactory<Startup>();
+        }
+
+        [Fact]
+        public async Task Post_Users_Returns_OK()
+        {
+            var client = _webFactory.CreateClient();
+            var request = new
+            {
+                Url = "api/users",
+                Body = new
+                {
+                    Id = 10,
+                    FirstName = "TestF10",
+                    LastName = "TestL10",
+                    IsDeleted = false,
+                    DateOfBirth = DateTime.UtcNow,
+                    IsActive = true
+                }
+            };
+            var bodyContent = new StringContent(JsonConvert.SerializeObject(request.Body), Encoding.UTF8, "application/json");
+            var response = await client.PostAsync(request.Url, bodyContent);
+
+            var respMessage = response.EnsureSuccessStatusCode();
+
+            Assert.Equal("Created", response.ReasonPhrase);
+            Assert.Equal(HttpStatusCode.Created, respMessage.StatusCode);
+        }
+
+        [Fact]
+        public async Task Post_University_Returns_BadRequest()
+        {
+            var client = _webFactory.CreateClient();
+            var request = new
+            {
+                Url = "api/users",
+                Body = new
+                {
+                    Id = -1,
+                    FirstName = "TestFNegativeOne",
+                    LastName = "TestLNegativeOne",
+                    IsDeleted = false,
+                    DateOfBirth = DateTime.UtcNow,
+                    IsActive = true
+                }
+            };
+            var bodyContent = new StringContent(JsonConvert.SerializeObject(request.Body), Encoding.UTF8, "application/json");
+            var response = await client.PostAsync(request.Url, bodyContent);
+
+            Assert.Equal("Bad Request", response.ReasonPhrase);
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
         }
 
         [Theory]
