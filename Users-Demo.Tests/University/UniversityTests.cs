@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Newtonsoft.Json;
+using Shouldly;
 using Xunit;
 
 namespace Users_Demo.Tests.University
@@ -29,8 +30,8 @@ namespace Users_Demo.Tests.University
 
             var statusCode = response.StatusCode;
 
-            Assert.Equal("No Content", response.ReasonPhrase);
-            Assert.Equal(HttpStatusCode.NoContent, statusCode);
+            response.ReasonPhrase.ShouldBe("No Content");
+            statusCode.ShouldBe(HttpStatusCode.NoContent);
         }
 
 
@@ -44,8 +45,8 @@ namespace Users_Demo.Tests.University
 
             var code = response.EnsureSuccessStatusCode();
 
-            Assert.Equal("OK", response.ReasonPhrase);
-            Assert.True(code.IsSuccessStatusCode);
+            response.ReasonPhrase.ShouldBe("OK");
+            code.IsSuccessStatusCode.ShouldBeTrue();
         }
 
         [Theory]
@@ -58,8 +59,8 @@ namespace Users_Demo.Tests.University
 
             var statusCode = response.StatusCode;
 
-            Assert.Equal("Not Found", response.ReasonPhrase);
-            Assert.Equal(HttpStatusCode.NotFound, statusCode);
+            response.ReasonPhrase.ShouldBe("Not Found");
+            statusCode.ShouldBe(HttpStatusCode.NotFound);
         }
 
         [Theory]
@@ -72,8 +73,8 @@ namespace Users_Demo.Tests.University
 
             var code = response.EnsureSuccessStatusCode();
 
-            Assert.Equal("OK", response.ReasonPhrase);
-            Assert.True(code.IsSuccessStatusCode);
+            response.ReasonPhrase.ShouldBe("OK");
+            code.IsSuccessStatusCode.ShouldBeTrue();
         }
 
         [Theory]
@@ -86,8 +87,8 @@ namespace Users_Demo.Tests.University
 
             var statusCode = response.StatusCode;
 
-            Assert.Equal("No Content", response.ReasonPhrase);
-            Assert.Equal(HttpStatusCode.NoContent, statusCode);
+            response.ReasonPhrase.ShouldBe("No Content");
+            statusCode.ShouldBe(HttpStatusCode.NoContent);
         }
 
         [Theory]
@@ -100,8 +101,8 @@ namespace Users_Demo.Tests.University
 
             var statusCode = response.StatusCode;
 
-            Assert.Equal("No Content", response.ReasonPhrase);
-            Assert.Equal(HttpStatusCode.NoContent, statusCode);
+            response.ReasonPhrase.ShouldBe("No Content");
+            statusCode.ShouldBe(HttpStatusCode.NoContent);
         }
 
         [Theory]
@@ -114,8 +115,8 @@ namespace Users_Demo.Tests.University
 
             var statusCode = response.StatusCode;
 
-            Assert.Equal("OK", response.ReasonPhrase);
-            Assert.Equal(HttpStatusCode.OK, statusCode);
+            response.ReasonPhrase.ShouldBe("OK");
+            statusCode.ShouldBe(HttpStatusCode.OK);
         }
 
         [Fact]
@@ -138,8 +139,8 @@ namespace Users_Demo.Tests.University
 
             var respMessage = response.EnsureSuccessStatusCode();
 
-            Assert.Equal("Created", response.ReasonPhrase);
-            Assert.Equal(HttpStatusCode.Created, respMessage.StatusCode);
+            response.ReasonPhrase.ShouldBe("Created");
+            respMessage.StatusCode.ShouldBe(HttpStatusCode.Created);
         }
 
         [Fact]
@@ -160,8 +161,8 @@ namespace Users_Demo.Tests.University
             var bodyContent = new StringContent(JsonConvert.SerializeObject(request.Body), Encoding.UTF8, "application/json");
             var response = await client.PostAsync(request.Url, bodyContent);
 
-            Assert.Equal("Bad Request", response.ReasonPhrase);
-            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+            response.ReasonPhrase.ShouldBe("Bad Request");
+            response.StatusCode.ShouldBe(HttpStatusCode.BadRequest);
         }
 
         [Fact]
@@ -184,8 +185,8 @@ namespace Users_Demo.Tests.University
 
             var respMessage = response.EnsureSuccessStatusCode();
 
-            Assert.Equal("OK", response.ReasonPhrase);
-            Assert.Equal(HttpStatusCode.OK, respMessage.StatusCode);
+            response.ReasonPhrase.ShouldBe("OK");
+            respMessage.StatusCode.ShouldBe(HttpStatusCode.OK);
         }
 
         [Fact]
@@ -206,8 +207,8 @@ namespace Users_Demo.Tests.University
             var bodyContent = new StringContent(JsonConvert.SerializeObject(request.Body), Encoding.UTF8, "application/json");
             var response = await client.PutAsync(request.Url, bodyContent);
 
-            Assert.Equal("Bad Request", response.ReasonPhrase);
-            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+            response.ReasonPhrase.ShouldBe("Bad Request");
+            response.StatusCode.ShouldBe(HttpStatusCode.BadRequest);
         }
 
         [Theory]
@@ -220,8 +221,8 @@ namespace Users_Demo.Tests.University
 
             var statusCode = response.StatusCode;
 
-            Assert.Equal("OK", response.ReasonPhrase);
-            Assert.Equal(HttpStatusCode.OK, statusCode);
+            response.ReasonPhrase.ShouldBe("OK");
+            statusCode.ShouldBe(HttpStatusCode.OK);
         }
 
         [Theory]
@@ -234,8 +235,8 @@ namespace Users_Demo.Tests.University
 
             var statusCode = response.StatusCode;
 
-            Assert.Equal("Internal Server Error", response.ReasonPhrase);
-            Assert.Equal(HttpStatusCode.InternalServerError, statusCode);
+            response.ReasonPhrase.ShouldBe("Internal Server Error");
+            statusCode.ShouldBe(HttpStatusCode.InternalServerError);
         }
     }
 }
