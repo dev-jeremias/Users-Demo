@@ -24,6 +24,7 @@ namespace Users_Demo.Tests.User
         [Fact]
         public async Task Post_Users_Returns_OK()
         {
+            //Arrange
             var client = _webFactory.CreateClient();
             var request = new
             {
@@ -39,10 +40,12 @@ namespace Users_Demo.Tests.User
                 }
             };
             var bodyContent = new StringContent(JsonConvert.SerializeObject(request.Body), Encoding.UTF8, "application/json");
-            var response = await client.PostAsync(request.Url, bodyContent);
 
+            //Act
+            var response = await client.PostAsync(request.Url, bodyContent);
             var respMessage = response.EnsureSuccessStatusCode();
 
+            //Assert
             response.ReasonPhrase.ShouldBe("Created");
             respMessage.StatusCode.ShouldBe(HttpStatusCode.Created);
         }

@@ -24,14 +24,15 @@ namespace Users_Demo.Tests.University
         [InlineData("api/university")]
         public async Task Get_University_Return_NoContent(string url)
         {
+            //Arrange
             var client = _webFactory.CreateClient();
 
+            //Act
             var response = await client.GetAsync(url);
 
-            var statusCode = response.StatusCode;
-
+            //Assert
             response.ReasonPhrase.ShouldBe("No Content");
-            statusCode.ShouldBe(HttpStatusCode.NoContent);
+            response.StatusCode.ShouldBe(HttpStatusCode.NoContent);
         }
 
 
