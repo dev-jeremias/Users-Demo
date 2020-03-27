@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Newtonsoft.Json;
+using Shouldly;
 using Xunit;
 
 namespace Users_Demo.Tests.User
@@ -42,8 +43,8 @@ namespace Users_Demo.Tests.User
 
             var respMessage = response.EnsureSuccessStatusCode();
 
-            Assert.Equal("Created", response.ReasonPhrase);
-            Assert.Equal(HttpStatusCode.Created, respMessage.StatusCode);
+            response.ReasonPhrase.ShouldBe("Created");
+            respMessage.StatusCode.ShouldBe(HttpStatusCode.Created);
         }
 
         [Fact]
