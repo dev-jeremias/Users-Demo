@@ -67,8 +67,8 @@ namespace Users_Demo.Tests.User
             var bodyContent = new StringContent(JsonConvert.SerializeObject(request.Body), Encoding.UTF8, "application/json");
             var response = await client.PostAsync(request.Url, bodyContent);
 
-            Assert.Equal("Bad Request", response.ReasonPhrase);
-            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+            response.ReasonPhrase.ShouldBe("Bad Request");
+            response.StatusCode.ShouldBe(HttpStatusCode.BadRequest);
         }
 
         [Theory]
@@ -81,8 +81,8 @@ namespace Users_Demo.Tests.User
 
             var statusCode = response.StatusCode;
 
-            Assert.Equal("No Content", response.ReasonPhrase);
-            Assert.Equal(HttpStatusCode.NoContent, statusCode);
+            response.ReasonPhrase.ShouldBe("No Content");
+            statusCode.ShouldBe(HttpStatusCode.NoContent);
         }
 
         [Theory]
@@ -109,8 +109,8 @@ namespace Users_Demo.Tests.User
 
             var statusCode = response.StatusCode;
 
-            Assert.Equal("Not Found", response.ReasonPhrase);
-            Assert.Equal(HttpStatusCode.NotFound, statusCode);
+            response.ReasonPhrase.ShouldBe("Not Found");
+            statusCode.ShouldBe(HttpStatusCode.NotFound);
         }
 
         [Theory]
@@ -123,8 +123,8 @@ namespace Users_Demo.Tests.User
 
             var code = response.EnsureSuccessStatusCode();
 
-            Assert.Equal("OK", response.ReasonPhrase);
-            Assert.True(code.IsSuccessStatusCode);
+            response.ReasonPhrase.ShouldBe("OK");
+            code.IsSuccessStatusCode.ShouldBeTrue();
         }
 
         [Theory]
@@ -137,8 +137,8 @@ namespace Users_Demo.Tests.User
 
             var statusCode = response.StatusCode;
 
-            Assert.Equal("No Content", response.ReasonPhrase);
-            Assert.Equal(HttpStatusCode.NoContent, statusCode);
+            response.ReasonPhrase.ShouldBe("No Content");
+            statusCode.ShouldBe(HttpStatusCode.NoContent);
         }
 
         [Theory]
@@ -151,8 +151,8 @@ namespace Users_Demo.Tests.User
 
             var statusCode = response.StatusCode;
 
-            Assert.Equal("OK", response.ReasonPhrase);
-            Assert.Equal(HttpStatusCode.OK, statusCode);
+            response.ReasonPhrase.ShouldBe("OK");
+            statusCode.ShouldBe(HttpStatusCode.OK);
         }
 
         [Theory]
@@ -165,8 +165,8 @@ namespace Users_Demo.Tests.User
 
             var statusCode = response.StatusCode;
 
-            Assert.Equal("No Content", response.ReasonPhrase);
-            Assert.Equal(HttpStatusCode.NoContent, statusCode);
+            response.ReasonPhrase.ShouldBe("No Content");
+            statusCode.ShouldBe(HttpStatusCode.NoContent);
         }
 
         [Theory]
@@ -179,8 +179,8 @@ namespace Users_Demo.Tests.User
 
             var statusCode = response.StatusCode;
 
-            Assert.Equal("OK", response.ReasonPhrase);
-            Assert.Equal(HttpStatusCode.OK, statusCode);
+            response.ReasonPhrase.ShouldBe("OK");
+            statusCode.ShouldBe(HttpStatusCode.OK);
         }
 
         [Theory]
@@ -193,8 +193,8 @@ namespace Users_Demo.Tests.User
 
             var statusCode = response.StatusCode;
 
-            Assert.Equal("No Content", response.ReasonPhrase);
-            Assert.Equal(HttpStatusCode.NoContent, statusCode);
+            response.ReasonPhrase.ShouldBe("No Content");
+            statusCode.ShouldBe(HttpStatusCode.NoContent);
         }
 
 
@@ -208,8 +208,8 @@ namespace Users_Demo.Tests.User
 
             var statusCode = response.StatusCode;
 
-            Assert.Equal("OK", response.ReasonPhrase);
-            Assert.Equal(HttpStatusCode.OK, statusCode);
+            response.ReasonPhrase.ShouldBe("OK");
+            statusCode.ShouldBe(HttpStatusCode.OK);
         }
 
         [Theory]
@@ -222,8 +222,7 @@ namespace Users_Demo.Tests.User
 
             var statusCode = response.StatusCode;
 
-            Assert.Equal("Internal Server Error", response.ReasonPhrase);
-            Assert.Equal(HttpStatusCode.InternalServerError, statusCode);
+            statusCode.ShouldBe(HttpStatusCode.InternalServerError);
         }
     }
 }
